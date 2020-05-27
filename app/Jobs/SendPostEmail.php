@@ -39,7 +39,7 @@ class SendPostEmail implements ShouldQueue
             'title'=> $this->post->title,
             'body'=> $this->post->body,
         );
-        // emails.post 对应的视图文件模板
+//         emails.post 对应的视图文件模板
 //        Mail::send('emails.post', $data, function($message){
 //            $message->from('************', 'Laravel Queues');
 //            $message->to('************')->subject('There is a new post');

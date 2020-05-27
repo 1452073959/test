@@ -32,12 +32,23 @@ $api->version('v1', [
     $api->post('login', 'UsersController@login');
     $api->get('me', 'UsersController@me');
     $api->post('update', 'UsersController@update');
-
-
 });
 
-$api->version('v2', function($api) {
-    $api->get('version', function() {
-        return response('this is version v2');
+//____________jwt
+Route::prefix('v3')->name('api.v3.')->namespace('Api')->group(function() {
+
+    Route::post('tt',function (){
+        return response('this is 1');
+    });
+    Route::post('login', 'AuthorizationsController@login');//登陆
+    Route::group([
+        'middleware' => 'jwt.auth',
+        'prefix' => 'auth'
+    ], function ($router) {
+        Route::post('logout', 'AuthorizationsController@logout');//退出登陆
+        Route::post('user_info', 'AuthorizationsController@userInfo');//用户信息
+    });
+    Route::middleware('jwt.auth')->group(function ($router) {
+        //这里存放需要通过验证的路由
     });
 });

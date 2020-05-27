@@ -123,8 +123,10 @@ Route::any('/mail', 'ConcernController@ship');
 Route::any('form2','RequestController@form2');
 Route::any('form3','RequestController@form3')->name('form.submit1');
 
-//
+//队列
 Route::get('/index', 'PostController@index');
+//json分页
+Route::get('/json', 'PostController@paginate');
 Route::post('/posts', 'PostController@store');
 
 //redisd队列
@@ -134,4 +136,7 @@ Route::any('/test/{action?}', function ($action = '') {
 
 //Cache
 Route::get('/cache/inter', 'CacheController@index');
+//redis队列
+Route::get('/cache/Sickers', 'CacheController@Sickers');
+Route::get('/cache/Doctor', 'CacheController@Doctor');
 Route::get('/cache/store', 'CacheController@store');
